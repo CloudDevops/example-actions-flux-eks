@@ -1,9 +1,9 @@
-FROM python:3.7
 
-RUN mkdir /app
-WORKDIR /app
-ADD . /app/
-RUN pip install -r requirements.txt
+FROM nginx
 
-EXPOSE 3000
-CMD ["python", "/app/main.py"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /usr/share/nginx/html
+COPY site .
+
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
