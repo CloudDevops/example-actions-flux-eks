@@ -1,23 +1,30 @@
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: hello-python
+  name: aws-example-octodex
   annotations:
     fluxcd.io/automated: "true"
 spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: hello-python
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   template:
     metadata:
       labels:
-        app: hello-python
+        app: aws-example-octodex
     spec:
       containers:
-      - name: hello-python
-        image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:9feafd4cc59513f792bb244e3bf798750416ff4a
-        imagePullPolicy: IfNotPresent
+      - name: aws-example-octodex
+        # image: 00000000000000.dkr.ecr.my-region.amazonaws.com/example-eks:tag
+        image: REGISTRY/IMAGE:TAG
         ports:
         - containerPort: 5000
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
