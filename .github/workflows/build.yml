@@ -31,10 +31,14 @@ jobs:
 
     # Add steps here like linting, testing, minification, etc.
       
-    - name: Setup ECR
-      run: |
+#    - name: Setup ECR
+#      run: |
         # Login to AWS ECR
-        $( aws ecr get-login-password --region us-west-2 )
+#        $( aws ecr get-login-password --region us-west-2 )
+            
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build and tag the image
       run: |
