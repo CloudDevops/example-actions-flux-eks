@@ -34,7 +34,7 @@ jobs:
     - name: Setup ECR
       run: |
         # Login to AWS ECR
-        $( aws ecr get-login-password --region region )
+        $( aws ecr get-login-password --region us-west-2 )
 
     - name: Build and tag the image
       run: |
