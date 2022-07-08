@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:67710080afaa2cc417574ffb6022ee49b3735229
+        image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:f2bea9daf5bb07fa5f05f19172dd5c72a5826f66
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
