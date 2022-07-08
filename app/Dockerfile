@@ -1,8 +1,14 @@
-FROM nginx
+FROM ubuntu:16.04
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+MAINTAINER Chris Fidao
 
-WORKDIR /usr/share/nginx/html
-COPY site .
+RUN apt-get update \
+    && apt-get install -y nginx \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && echo "daemon off;" >> /etc/nginx/nginx.conf
 
-CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
+ADD default /etc/nginx/sites-available/default
+
+EXPOSE 80
+CMD ["nginx"]
