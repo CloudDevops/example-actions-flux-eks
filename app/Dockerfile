@@ -1,14 +1,9 @@
-FROM ubuntu:16.04
+FROM python:3.7
 
-MAINTAINER Chris Fidao
+RUN mkdir /app
+WORKDIR /app
+ADD . /app/
+RUN pip install -r requirements.txt
 
-RUN apt-get update \
-    && apt-get install -y nginx \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
-
-#ADD default /etc/nginx/sites-available/default
-
-EXPOSE 80
-CMD ["nginx"]
+EXPOSE 3000
+CMD ["python", "/app/main.py"]
