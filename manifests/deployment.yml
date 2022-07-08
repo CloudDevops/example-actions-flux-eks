@@ -1,21 +1,17 @@
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
+  name: hello-python
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
+  replicas: 4
   template:
     metadata:
       labels:
-        app: nginx
+        app: hello-python
     spec:
       containers:
-      - name: nginx
+      - name: hello-python
         image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:a54ccc57dda6f10445a75f20b088f3af1fe3ce64
+        imagePullPolicy: Never
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
