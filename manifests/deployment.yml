@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:3f648ae15c9c8550fd9fab8f0cbd93ba4008199f
+        image: 193382206834.dkr.ecr.us-west-2.amazonaws.com/example-eks:2a0608cc5d20a6a9c171b2a09f1b9b72f77a887c
         #image: REGISTRY/IMAGE:TAG
         ports:
         - containerPort: 3000
